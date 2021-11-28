@@ -1,0 +1,13 @@
+#!/bin/bash
+req_tomcat_ver=9.0.55
+tomcat_major_ver=$(echo $req_tomcat_ver|cut -c 1)
+url=https://dlcdn.apache.org/tomcat/tomcat-${tomcat_major_ver}/v${req_tomcat_ver}/bin/apache-tomcat-${req_tomcat_ver}.zip
+wget $url
+unzip apache-tomcat-${req_tomcat_ver}.zip
+mv apache-tomcat-${req_tomcat_ver} tomcat${tomcat_major_ver}
+rm -rf apache-tomcat-${req_tomcat_ver}.zip
+cd tomcat${tomcat_major_ver}/bin
+chmod u+x catalina.sh
+chmod u+x startup.sh
+chmod u+x shutdown.sh
+./startup.sh
